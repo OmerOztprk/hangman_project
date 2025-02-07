@@ -10,14 +10,17 @@ for position in range(word_length):
     placeholder += "_"
 print(placeholder)
 
-guess = input("Guess a letter: ").lower()
+game_over = False
+correct_letters = ["_" for _ in range(len(chosen_word))]
 
-display = ""
+while not game_over:
+    guess = input("Guess a letter: ").lower()
 
-for letter in chosen_word:
-    if letter == guess:
-        display += letter
-    else:
-        display += "_"
+    for i in range(len(chosen_word)):
+        if guess == chosen_word[i]:
+            correct_letters[i] = guess
+    print("".join(correct_letters))
 
-print(display)
+    if "_" not in correct_letters:
+        game_over = True
+        print("You win!")
